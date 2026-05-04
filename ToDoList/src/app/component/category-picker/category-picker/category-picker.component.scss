@@ -1,0 +1,174 @@
+// ============================================
+// CategoryPicker — Estilo bottom-sheet taskflow
+// ============================================
+
+// ---- Overlay de fondo ----
+.side-panel-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0);
+  z-index: 1000;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  pointer-events: none;
+  transition: background 0.3s ease;
+
+  &.panel-active {
+    background: rgba(0, 0, 0, 0.45);
+    pointer-events: all;
+  }
+}
+
+// ---- Sheet content ----
+.category-sheet-content {
+  width: 100%;
+  max-width: 640px;
+  background: #ffffff;
+  border-radius: 32px 32px 0 0;
+  box-shadow: 0 -15px 40px rgba(0, 0, 0, 0.2);
+  padding: 12px 24px 40px 24px;
+  transform: translateY(100%);
+  transition: transform 0.35s cubic-bezier(0.32, 0.72, 0, 1);
+
+  .panel-active & {
+    transform: translateY(0);
+  }
+}
+
+// ---- Handle ----
+.sheet-handle {
+  width: 40px;
+  height: 4px;
+  background: #e5e7eb;
+  border-radius: 4px;
+  margin: 0 auto 20px auto;
+}
+
+// ---- Header ----
+.sheet-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  margin-bottom: 24px;
+
+  .sheet-header-text {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+  }
+
+  .sheet-title {
+    font-size: 1.25rem;
+    font-weight: 800;
+    color: #1f2937;
+    margin: 0;
+    letter-spacing: -0.3px;
+  }
+
+  .sheet-subtitle {
+    font-size: 0.875rem;
+    color: #6b7280;
+    font-weight: 500;
+    margin: 0;
+  }
+
+  .close-sheet-btn {
+    background: none;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+    color: #9ca3af;
+    display: flex;
+    align-items: center;
+
+    ion-icon {
+      font-size: 28px;
+      transition: color 0.2s ease;
+    }
+
+    &:active ion-icon {
+      color: #6b7280;
+    }
+  }
+}
+
+// ---- Scroll horizontal de chips — igual a taskflow ----
+.category-scroll-container {
+  display: flex;
+  overflow-x: auto;
+  gap: 16px;
+  padding-bottom: 8px;
+  scrollbar-width: none;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+.category-chip {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  min-width: 72px;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+
+  &:active {
+    transform: scale(0.92);
+  }
+
+  .category-icon {
+    width: 60px;
+    height: 60px;
+    border-radius: 18px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 26px;
+    background: rgba(var(--ion-color-primary-rgb), 0.1);
+    color: var(--ion-color-primary);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
+    transition: all 0.2s ease;
+  }
+
+  .category-name {
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: #6b7280;
+    text-align: center;
+    line-height: 1.3;
+    max-width: 72px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    transition: color 0.2s ease;
+  }
+
+  &:active .category-icon {
+    background: var(--ion-color-primary);
+    color: white;
+    box-shadow: 0 6px 16px rgba(var(--ion-color-primary-rgb), 0.35);
+  }
+}
+
+// ---- Estado vacío ----
+.no-categories {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  padding: 24px;
+  color: #9ca3af;
+  width: 100%;
+
+  ion-icon {
+    font-size: 32px;
+  }
+
+  span {
+    font-size: 0.875rem;
+    font-weight: 500;
+  }
+}

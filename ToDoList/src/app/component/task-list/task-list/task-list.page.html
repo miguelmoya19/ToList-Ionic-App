@@ -1,0 +1,82 @@
+<!-- ---- Lista de Tareas — Estilo taskflow-ionic-app ---- -->
+<div class="task-section">
+
+  <!-- ---- Filtro de Categorías — Chips horizontales ---- -->
+  <div class="task-list-filter-container" id="category-trigger">
+    <button class="filter-chip" [class.active]="selectedCategoryId === null"
+      (click)="filterInformationForCategory(null)">Todas</button>
+   
+      @for (item of informationCategory; track item.id) {
+      <button class="filter-chip" [class.active]="selectedCategoryId === item.id"
+        (click)="filterInformationForCategory(item.id)">{{ item.name }}</button>
+      }
+      
+    
+  </div>
+
+  <!-- ---- Lista de ion-card al estilo taskflow ---- -->
+  <div class="task-list-container">
+
+    @if (isLoading) {
+      <!-- SKELETON LOADER -->
+      <app-loading-skeleton />
+    } @else {
+
+      @for (task of taskInformation; track task.id) {
+        <ion-card class="task-item-card" (click)="openEditModal(task)">
+          <div class="task-item-content">
+            <div class="task-details">
+
+              <!-- Título + badge de estado -->
+              <div class="box-status">
+                <h4 class="task-title" [class.task-strike]="task.is_completed">{{ task.title }}</h4>
+                <ion-badge [color]="task.is_completed ? 'success' : 'warning'" mode="ios">
+                  {{ task.is_completed ? 'Completada' : 'Pendiente' }}
+                </ion-badge>
+              </div>
+
+              <!-- Categoría + fecha -->
+              <div class="task-meta">
+                <ion-badge color="tertiary" mode="ios">
+                  {{ task.id_category ? task.name_category : 'Sin categoría' }}
+                </ion-badge>
+                <span class="task-time">
+                  <ion-icon name="calendar-outline" color="medium"></ion-icon>
+                  {{ task.created_at | date:'dd/MM/yyyy' }}
+                </span>
+              </div>
+
+            </div>
+
+            <!-- Acción: eliminar -->
+            <div class="task-actions" (click)="deleteAsyncTask(task.id); $event.stopPropagation()">
+              <ion-button fill="clear" color="medium" size="small" class="delete-btn">
+                <ion-icon slot="icon-only" name="trash-outline"></ion-icon>
+              </ion-button>
+            </div>
+          </div>
+        </ion-card>
+      }
+
+      <!-- Mensaje vacío -->
+      @if (taskInformation.length === 0) {
+        <div class="empty-state">
+          <ion-icon name="checkmark-done-circle-outline"></ion-icon>
+          <p>No hay tareas aún</p>
+          <span>Usa el botón + para agregar una tarea</span>
+        </div>
+      }
+    }
+  </div>
+
+  <!-- Modal de edición de tarea -->
+  <ion-modal #editModal [initialBreakpoint]="0.75" [breakpoints]="[0, 0.75, 1]" class="custom-bottom-sheet">
+    <ng-template>
+      <app-task-form-modal
+        [task]="selectedTask"
+        [isEdit]="true">
+      </app-task-form-modal>
+    </ng-template>
+  </ion-modal>
+
+</div>

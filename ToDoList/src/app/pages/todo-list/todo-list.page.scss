@@ -1,0 +1,202 @@
+// ============================================
+// TEMA CLARO — igual a taskflow-ionic-app
+// ============================================
+
+ion-content {
+  --background: #f4f6fb;
+}
+
+ion-toolbar {
+  --background: #f4f6fb;
+}
+
+// --- Header title con gradiente ---
+.header-title {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-weight: 800;
+  font-size: 1.3rem;
+  letter-spacing: -0.5px;
+
+  span {
+    background: linear-gradient(90deg, var(--ion-color-primary) 0%, var(--ion-color-tertiary) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+}
+
+.header-button {
+  --color: #4b5563;
+  margin: 0 4px;
+
+  ion-icon {
+    font-size: 22px;
+  }
+}
+
+// --- Saludo ---
+.greeting-section {
+  margin-top: 12px;
+  margin-bottom: 24px;
+
+  h2 {
+    font-size: 1.8rem;
+    font-weight: 800;
+    margin: 0 0 4px 0;
+    color: #1f2937;
+    letter-spacing: -0.5px;
+  }
+
+  p {
+    margin: 0;
+    color: #6b7280;
+    font-size: 1rem;
+    font-weight: 500;
+  }
+}
+
+// ============================================
+// Summary Cards — 3 tarjetas iguales a taskflow
+// ============================================
+.summary-cards {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 32px;
+
+  .summary-card {
+    flex: 1;
+    margin: 0;
+    border-radius: 16px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+    background: #ffffff;
+
+    ion-card-content {
+      padding: 16px 12px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+    }
+
+    ion-icon {
+      font-size: 26px;
+      margin-bottom: 12px;
+      padding: 8px;
+      border-radius: 12px;
+    }
+
+    h3 {
+      font-size: 1.5rem;
+      font-weight: 800;
+      margin: 0 0 2px 0;
+      color: #1f2937;
+    }
+
+    p {
+      margin: 0;
+      font-size: 0.75rem;
+      color: #6b7280;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    &.total {
+      ion-icon {
+        color: var(--ion-color-primary);
+        background: rgba(var(--ion-color-primary-rgb), 0.1);
+      }
+    }
+
+    &.pending {
+      ion-icon {
+        color: var(--ion-color-warning);
+        background: rgba(var(--ion-color-warning-rgb), 0.1);
+      }
+    }
+
+    &.completed {
+      ion-icon {
+        color: var(--ion-color-success);
+        background: rgba(var(--ion-color-success-rgb), 0.1);
+      }
+    }
+  }
+}
+
+// ============================================
+// Section header
+// ============================================
+.section-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 16px;
+
+  h3 {
+    font-size: 1.25rem;
+    font-weight: 800;
+    margin: 0;
+    color: #1f2937;
+    letter-spacing: -0.3px;
+  }
+}
+
+// ============================================
+// Filtros
+// ============================================
+.filter-row {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 20px;
+  overflow-x: auto;
+  padding-bottom: 4px;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+
+  .filter-chip {
+    background: #ffffff;
+    border: 1.5px solid #e5e7eb;
+    border-radius: 30px;
+    color: #6b7280;
+    font-size: 13px;
+    font-weight: 600;
+    padding: 8px 18px;
+    white-space: nowrap;
+    cursor: pointer;
+    transition: all 0.2s ease;
+
+    &.active {
+      background: var(--ion-color-primary);
+      border-color: var(--ion-color-primary);
+      color: white;
+      box-shadow: 0 4px 12px rgba(var(--ion-color-primary-rgb), 0.35);
+    }
+  }
+}
+
+// ============================================
+// FAB — igual a taskflow
+// ============================================
+.main-fab {
+  --box-shadow: 0 8px 24px rgba(var(--ion-color-primary-rgb), 0.4);
+  --border-radius: 20px;
+  margin-bottom: 16px;
+  margin-right: 16px;
+
+  ion-icon {
+    font-size: 28px;
+  }
+}
+
+// ============================================
+// Modal bottom-sheet — igual a taskflow
+// ============================================
+ion-modal.custom-bottom-sheet {
+  --background: #ffffff;
+  --box-shadow: 0 -15px 40px rgba(0, 0, 0, 0.2);
+  --border-radius: 32px 32px 0 0;
+}

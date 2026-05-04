@@ -1,0 +1,82 @@
+<!-- ======= HEADER — Estilo taskflow ======= -->
+<ion-header class="ion-no-border">
+  <ion-toolbar>
+    <ion-title>
+      <div class="header-title">
+        <ion-icon name="checkmark-done-circle" color="primary"></ion-icon>
+        <span>To-Do List</span>
+      </div>
+    </ion-title>
+   
+  </ion-toolbar>
+</ion-header>
+
+<!-- ======= CONTENT ======= -->
+<ion-content class="ion-padding">
+
+  <!-- Saludo -->
+  <div class="greeting-section">
+    <h2>Hola, Bienvenido 👋</h2>
+  </div>
+
+  <!-- Summary Cards — igual a taskflow -->
+  <div class="summary-cards">
+    <ion-card class="summary-card total">
+      <ion-card-content>
+        <ion-icon name="list-outline"></ion-icon>
+        <h3>{{ this.informationProgress().total }}</h3>
+        <p>Total</p>
+      </ion-card-content>
+    </ion-card>
+    <ion-card class="summary-card pending">
+      <ion-card-content>
+        <ion-icon name="time-outline"></ion-icon>
+        <h3>{{ this.informationProgress().total - this.informationProgress().totalSuccess }}</h3>
+        <p>Pendientes</p>
+      </ion-card-content>
+    </ion-card>
+    <ion-card class="summary-card completed">
+      <ion-card-content>
+        <ion-icon name="checkmark-circle-outline"></ion-icon>
+        <h3>{{ this.informationProgress().totalSuccess }}</h3>
+        <p>Completadas</p>
+      </ion-card-content>
+    </ion-card>
+  </div>
+
+  <div class="section-header">
+    <h3>Categorías</h3>
+  </div>
+
+  <app-category-list ></app-category-list>
+
+  <div class="section-header">
+    <h3>Tus Tareas</h3>
+  </div>
+
+  @if (this.isAllTask) {
+    <app-task-list
+      [taskInformation]="taskInformation"
+      [informationCategory]="this.taskCategory"
+      [taskInformationCopy]="taskDataCopy"
+      [isLoading]="isLoading()"
+      (deleteTask)="this.deleteAsyncTask($event)"
+      (addTask)="this.updateAsyncTask($event)"
+      (assignedId)="this.assignedIdToCategory($event)"
+    />
+  }
+
+  <ion-fab vertical="bottom" horizontal="end" slot="fixed">
+    <ion-fab-button id="open-task-modal" color="primary" class="main-fab">
+      <ion-icon name="add"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+
+  <ion-modal trigger="open-task-modal" [initialBreakpoint]="0.75" [breakpoints]="[0, 0.75, 1]"
+    class="custom-bottom-sheet" (ionModalDidDismiss)="onModalDismiss($event)">
+    <ng-template>
+      <app-task-form-modal></app-task-form-modal>
+    </ng-template>
+  </ion-modal>
+
+</ion-content>

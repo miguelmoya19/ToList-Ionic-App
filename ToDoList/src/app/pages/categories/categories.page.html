@@ -1,0 +1,126 @@
+<!-- ======= HEADER — Estilo taskflow ======= -->
+<ion-header class="ion-no-border">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/todo-list" text="" icon="arrow-back-outline" class="custom-back-btn"></ion-back-button>
+    </ion-buttons>
+    <ion-title>
+      <div class="header-title">
+        <ion-icon name="pricetags-outline" color="primary"></ion-icon>
+        <span>Categorías</span>
+      </div>
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<!-- ======= CONTENT ======= -->
+<ion-content class="ion-padding">
+
+  <!-- ---- Chips de categorías — igual a category-list de taskflow ---- -->
+  <div class="section-header">
+    <h3>Tus Categorías</h3>
+  </div>
+
+  <div class="category-scroll-container">
+    <!-- Chip "Nueva" siempre al inicio -->
+    <div class="category-chip add-new" (click)="clearForm()">
+      <div class="category-icon new">
+        <ion-icon name="add"></ion-icon>
+      </div>
+      <span class="category-name">Nueva</span>
+    </div>
+
+    @if (this.isLoading()) {
+      <div class="category-chip" *ngFor="let _ of [1,2,3]">
+        <div class="category-icon">
+          <ion-icon name="pricetag"></ion-icon>
+        </div>
+        <span class="category-name">...</span>
+      </div>
+    } @else {
+      @for (cat of categoryInformation(); track cat.id) {
+        <div class="category-chip" (click)="getCategoryForId(cat.id)">
+          <div class="category-icon">
+            <ion-icon name="pricetag"></ion-icon>
+          </div>
+          <span class="category-name">{{ cat.name }}</span>
+        </div>
+      }
+    }
+  </div>
+
+  <!-- ---- Formulario crear/editar (inline, igual a taskflow category-modal) ---- -->
+  <div class="form-card">
+    <div class="form-header">
+      <h4 class="form-title">{{ isUpdate ? 'Editar Categoría' : 'Nueva Categoría' }}</h4>
+      @if (isUpdate) {
+        <button class="cancel-edit-btn" (click)="clearForm()">
+          <ion-icon name="close-circle-outline"></ion-icon>
+          Cancelar
+        </button>
+      }
+    </div>
+    <div class="input-group">
+      <ion-label position="stacked" class="custom-label">Nombre de categoría</ion-label>
+      <ion-item class="custom-input" lines="none">
+        <ion-input placeholder="Ej. Finanzas" type="text" [formGroup]="this.formCategory" formControlName="name"></ion-input>
+      </ion-item>
+    </div>
+    <ion-button expand="block" class="save-button" shape="round" (click)="save()">
+      {{ isUpdate ? 'Actualizar Categoría' : 'Guardar Categoría' }}
+    </ion-button>
+    @if (isUpdate) {
+      <ion-button expand="block" color="danger" fill="clear" shape="round" class="delete-btn-form"
+        (click)="deleteSelected()">
+        Eliminar Categoría
+      </ion-button>
+    }
+  </div>
+
+  <!-- ---- Lista de categorías — ion-card igual a taskflow ---- -->
+  <div class="section-header">
+    <h3>Lista ({{ categoryInformation().length }})</h3>
+  </div>
+
+  @if (this.isLoading()) {
+    <app-loading-skeleton />
+  } @else {
+    <div class="task-list-container">
+      @for (cat of categoryInformation(); track cat.id) {
+        <ion-card class="task-item-card" (click)="getCategoryForId(cat.id)">
+          <div class="task-item-content">
+            <div class="cat-icon-box">
+              <ion-icon name="folder-outline"></ion-icon>
+            </div>
+            <div class="task-details">
+              <div class="box-status">
+                <h4 class="task-title">{{ cat.name }}</h4>
+                <ion-badge color="tertiary" mode="ios">{{ cat.value }} tareas</ion-badge>
+              </div>
+              <div class="task-meta">
+                <span class="task-time">
+                  <ion-icon name="calendar-outline" color="medium"></ion-icon>
+                  {{ cat.created_at | date:'dd/MM/yyyy' }}
+                </span>
+              </div>
+            </div>
+            <div class="task-actions" (click)="deleteCategory(cat.id); $event.stopPropagation()">
+              <ion-button fill="clear" color="medium" size="small">
+                <ion-icon slot="icon-only" name="trash-outline"></ion-icon>
+              </ion-button>
+            </div>
+          </div>
+        </ion-card>
+      }
+
+      @if (categoryInformation().length === 0) {
+        <div class="empty-state">
+          <ion-icon name="pricetags-outline"></ion-icon>
+          <p>Sin categorías</p>
+          <span>Crea una nueva categoría arriba</span>
+        </div>
+      }
+    </div>
+  }
+
+</ion-content>

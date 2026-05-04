@@ -1,0 +1,40 @@
+<!-- SELECTOR DE CATEGORÍA — Estilo taskflow -->
+<div class="side-panel-overlay" [class.panel-active]="this.IsvisiblityPanel" (click)="closePanel()">
+
+  <div class="category-sheet-content" (click)="$event.stopPropagation()">
+
+    <!-- Handle indicator -->
+    <div class="sheet-handle"></div>
+
+    <!-- Header -->
+    <div class="sheet-header">
+      <div class="sheet-header-text">
+        <h3 class="sheet-title">Elegir Categoría</h3>
+        <p class="sheet-subtitle">Organiza tus tareas</p>
+      </div>
+      <button class="close-sheet-btn" (click)="closePanel()">
+        <ion-icon name="close-circle"></ion-icon>
+      </button>
+    </div>
+
+    <!-- Categorías -->
+    <div class="category-scroll-container">
+      @for (item of this.informationCategory; track $index) {
+        <div class="category-chip" (click)="this.assigned(item)">
+          <div class="category-icon">
+            <ion-icon name="pricetag"></ion-icon>
+          </div>
+          <span class="category-name">{{ item.name }}</span>
+        </div>
+      }
+      @if (informationCategory.length === 0) {
+        <div class="no-categories">
+          <ion-icon name="folder-open-outline"></ion-icon>
+          <span>Sin categorías</span>
+        </div>
+      }
+    </div>
+
+  </div>
+
+</div>

@@ -1,0 +1,344 @@
+// ============================================
+// Categorías — Tema claro, estilo taskflow
+// ============================================
+
+ion-content {
+  --background: #f4f6fb;
+}
+
+ion-toolbar {
+  --background: #f4f6fb;
+}
+
+// ---- Header ----
+.header-title {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-weight: 800;
+  font-size: 1.3rem;
+  letter-spacing: -0.5px;
+
+  span {
+    background: linear-gradient(90deg, var(--ion-color-primary) 0%, var(--ion-color-tertiary) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+}
+
+.custom-back-btn {
+  --color: #4b5563;
+}
+
+// ---- Section header ----
+.section-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 16px;
+
+  h3 {
+    font-size: 1.25rem;
+    font-weight: 800;
+    margin: 0;
+    color: #1f2937;
+    letter-spacing: -0.3px;
+  }
+}
+
+// ============================================
+// Chips de categorías — Igual a taskflow
+// ============================================
+.category-scroll-container {
+  display: flex;
+  overflow-x: auto;
+  gap: 16px;
+  padding-bottom: 12px;
+  margin-bottom: 28px;
+  scrollbar-width: none;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+.category-chip {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  min-width: 72px;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+
+  &:active {
+    transform: scale(0.92);
+  }
+
+  .category-icon {
+    width: 60px;
+    height: 60px;
+    border-radius: 18px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 26px;
+    background: rgba(var(--ion-color-primary-rgb), 0.1);
+    color: var(--ion-color-primary);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
+    transition: all 0.2s ease;
+
+    &.new {
+      background: var(--ion-color-primary);
+      color: white;
+      box-shadow: 0 6px 16px rgba(var(--ion-color-primary-rgb), 0.35);
+    }
+  }
+
+  &.add-new .category-icon {
+    background: var(--ion-color-primary);
+    color: white;
+    box-shadow: 0 6px 16px rgba(var(--ion-color-primary-rgb), 0.35);
+  }
+
+  .category-name {
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: #6b7280;
+    text-align: center;
+    max-width: 72px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    transition: color 0.2s ease;
+  }
+
+  &.add-new .category-name {
+    color: var(--ion-color-primary);
+    font-weight: 700;
+  }
+}
+
+// ============================================
+// Formulario inline — Estilo task-modal de taskflow
+// ============================================
+.form-card {
+  background: #ffffff;
+  border-radius: 20px;
+  padding: 20px;
+  margin-bottom: 28px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.06);
+  border: 1px solid #f3f4f6;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.form-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  .form-title {
+    font-size: 1.1rem;
+    font-weight: 800;
+    color: #1f2937;
+    margin: 0;
+    letter-spacing: -0.2px;
+  }
+
+  .cancel-edit-btn {
+    background: none;
+    border: none;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    color: #6b7280;
+    font-size: 0.85rem;
+    font-weight: 600;
+    cursor: pointer;
+    padding: 6px 10px;
+    border-radius: 8px;
+    transition: all 0.2s ease;
+
+    ion-icon {
+      font-size: 16px;
+    }
+
+    &:active {
+      background: #f3f4f6;
+    }
+  }
+}
+
+.input-group {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.custom-label {
+  font-size: 1rem;
+  font-weight: 700;
+  color: #374151;
+  margin-left: 4px;
+}
+
+.custom-input {
+  --background: #f9fafb;
+  --border-radius: 14px;
+  --padding-start: 16px;
+  border: 1.5px solid #e5e7eb;
+  transition: all 0.2s ease;
+
+  &:focus-within {
+    border-color: var(--ion-color-primary);
+    box-shadow: 0 0 0 4px rgba(var(--ion-color-primary-rgb), 0.1);
+  }
+
+  ion-input {
+    --padding-top: 16px;
+    --padding-bottom: 16px;
+    font-size: 1rem;
+    font-weight: 500;
+    --color: #111827;
+  }
+}
+
+.save-button {
+  --box-shadow: 0 6px 16px rgba(var(--ion-color-primary-rgb), 0.35);
+  height: 52px;
+  font-weight: 700;
+  font-size: 1rem;
+  letter-spacing: 0.3px;
+  margin: 4px 0 0 0;
+}
+
+.delete-btn-form {
+  font-weight: 600;
+  font-size: 0.95rem;
+  margin: 0;
+}
+
+// ============================================
+// Lista de ion-card — igual a task-list taskflow
+// ============================================
+.task-list-container {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.task-item-card {
+  margin: 0 0 12px 0;
+  border-radius: 16px;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
+  background: #ffffff;
+  border: 1px solid #f3f4f6;
+  cursor: pointer;
+  transition: all 0.2s ease;
+
+  &:active {
+    transform: scale(0.99);
+    box-shadow: 0 1px 6px rgba(0, 0, 0, 0.04);
+  }
+
+  .task-item-content {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 16px 16px 16px 18px;
+  }
+
+  .cat-icon-box {
+    width: 46px;
+    height: 46px;
+    border-radius: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(var(--ion-color-primary-rgb), 0.1);
+    flex-shrink: 0;
+
+    ion-icon {
+      font-size: 22px;
+      color: var(--ion-color-primary);
+    }
+  }
+
+  .task-details {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .box-status {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  .task-title {
+    font-size: 1rem;
+    font-weight: 700;
+    margin: 0;
+    color: #1f2937;
+    line-height: 1.4;
+    flex: 1;
+  }
+
+  .task-meta {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .task-time {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    font-size: 0.75rem;
+    color: #9ca3af;
+    font-weight: 500;
+
+    ion-icon {
+      font-size: 13px;
+    }
+  }
+
+  .task-actions {
+    flex-shrink: 0;
+  }
+}
+
+// ---- Estado vacío ----
+.empty-state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 48px 24px;
+  text-align: center;
+  gap: 8px;
+
+  ion-icon {
+    font-size: 56px;
+    color: #d1d5db;
+    margin-bottom: 8px;
+  }
+
+  p {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: #374151;
+    margin: 0;
+  }
+
+  span {
+    font-size: 0.875rem;
+    color: #9ca3af;
+    font-weight: 500;
+  }
+}

@@ -1,0 +1,180 @@
+// ============================================
+// Estilos task-list — Idéntico a taskflow
+// ============================================
+
+// ---- Filtros de Categoría (chips horizontales) ----
+.task-list-filter-container {
+  display: flex;
+  overflow-x: auto;
+  gap: 10px;
+  padding-bottom: 12px;
+  margin-bottom: 16px;
+  scrollbar-width: none;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+
+  .filter-chip {
+    background: #ffffff;
+    border: 1.5px solid #e5e7eb;
+    border-radius: 30px;
+    color: #6b7280;
+    font-size: 13px;
+    font-weight: 600;
+    padding: 8px 18px;
+    white-space: nowrap;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    flex-shrink: 0;
+
+    &.active {
+      background: var(--ion-color-primary);
+      border-color: var(--ion-color-primary);
+      color: white;
+      box-shadow: 0 4px 12px rgba(var(--ion-color-primary-rgb), 0.35);
+    }
+  }
+}
+
+// ---- Contenedor de tarjetas ----
+.task-list-container {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+// ---- ion-card de tarea — copia exacta de taskflow ----
+.task-item-card {
+  margin: 0 0 12px 0;
+  border-radius: 16px;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
+  background: #ffffff;
+  border: 1px solid #f3f4f6;
+  cursor: pointer;
+  transition: all 0.2s ease;
+
+  &:active {
+    transform: scale(0.99);
+    box-shadow: 0 1px 6px rgba(0, 0, 0, 0.04);
+  }
+
+  .task-item-content {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 16px 16px 16px 18px;
+    gap: 12px;
+  }
+
+  .task-details {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  // Fila: título + badge de estado
+  .box-status {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  .task-title {
+    font-size: 1rem;
+    font-weight: 700;
+    margin: 0;
+    color: #1f2937;
+    line-height: 1.4;
+    flex: 1;
+
+    &.task-strike {
+      text-decoration: line-through;
+      color: #9ca3af;
+    }
+  }
+
+  // Fila: badge categoría + fecha
+  .task-meta {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  .task-time {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    font-size: 0.75rem;
+    color: #9ca3af;
+    font-weight: 500;
+
+    ion-icon {
+      font-size: 13px;
+    }
+  }
+
+  // Botón eliminar
+  .task-actions {
+    flex-shrink: 0;
+
+    .delete-btn {
+      --color: #9ca3af;
+      --border-radius: 10px;
+      margin: 0;
+
+      &:active {
+        --color: #ef4444;
+      }
+
+      ion-icon {
+        font-size: 20px;
+      }
+    }
+  }
+}
+
+// ---- Estado vacío ----
+.empty-state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 48px 24px;
+  text-align: center;
+  gap: 8px;
+
+  ion-icon {
+    font-size: 56px;
+    color: #d1d5db;
+    margin-bottom: 8px;
+  }
+
+  p {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: #374151;
+    margin: 0;
+  }
+
+  span {
+    font-size: 0.875rem;
+    color: #9ca3af;
+    font-weight: 500;
+  }
+}
+
+// ---- Modal bottom-sheet ----
+ion-modal.custom-bottom-sheet {
+  --background: #ffffff;
+  --box-shadow: 0 -15px 40px rgba(0, 0, 0, 0.2);
+  --border-radius: 32px 32px 0 0;
+}
+
+// ---- Sección principal ----
+.task-section {
+  padding-bottom: 24px;
+}

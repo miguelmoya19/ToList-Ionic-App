@@ -1,0 +1,54 @@
+<ion-header class="ion-no-border">
+  <ion-toolbar>
+    <ion-title>{{ isEdit ? 'Editar Tarea' : 'Nueva Tarea' }}</ion-title>
+    <ion-buttons slot="end">
+      <ion-button color="medium" class="close-btn" (click)="dismiss()">
+        <ion-icon slot="icon-only" name="close-circle"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <form [formGroup]="taskForm">
+    <div class="modal-form">
+
+      <!-- Título -->
+      <div class="input-group">
+        <ion-label position="stacked" class="custom-label">¿Qué necesitas hacer?</ion-label>
+        <ion-item class="custom-input" lines="none">
+          <ion-input type="text" placeholder="Escribe el título..." formControlName="title"></ion-input>
+        </ion-item>
+      </div>
+
+      <!-- Categoría -->
+      <div class="input-group">
+        <ion-label position="stacked" class="custom-label">Categoría</ion-label>
+        <ion-item class="custom-input" lines="none">
+          <ion-icon name="folder-outline" slot="start" color="medium" class="input-icon"></ion-icon>
+          <ion-select justify="space-between" interface="popover" placeholder="Seleccionar categoría"
+            formControlName="id_category" style="width: 100%; max-width: 100%;">
+            <ion-select-option *ngFor="let cat of categories" [value]="cat.id">{{ cat.name }}</ion-select-option>
+          </ion-select>
+        </ion-item>
+      </div>
+
+      <!-- Estado -->
+      <div class="input-group">
+        <ion-item class="custom-input" lines="none">
+          <ion-label class="custom-label">Marcar como completada</ion-label>
+          <ion-toggle slot="end" formControlName="is_completed" color="primary"></ion-toggle>
+        </ion-item>
+      </div>
+
+    </div>
+  </form>
+
+  <ion-footer class="ion-no-border">
+    <ion-toolbar>
+      <ion-button (click)="saveTask()" expand="block" class="save-button" shape="round">
+        {{ isEdit ? 'Actualizar Tarea' : 'Crear Tarea' }}
+      </ion-button>
+    </ion-toolbar>
+  </ion-footer>
+</ion-content>
