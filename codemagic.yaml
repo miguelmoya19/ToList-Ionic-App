@@ -1,0 +1,25 @@
+workflows:
+  ionic-ios-build:
+    name: Ionic iOS Build
+    max_build_duration: 60
+    environment:
+      node: 18
+
+    scripts:
+      - name: Install dependencies
+        working_directory: ToDoList
+        script: npm install
+
+      - name: Install Ionic CLI
+        script: npm install -g @ionic/cli cordova
+
+      - name: Add iOS platform
+        working_directory: ToDoList
+        script: ionic cordova platform add ios
+
+      - name: Build iOS
+        working_directory: ToDoList
+        script: ionic cordova build ios
+
+    artifacts:
+      - ToDoList/platforms/ios/build/**/*.ipa
